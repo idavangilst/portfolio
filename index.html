@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Ida van Gilst | Computer Science student </title>
+    <link rel="icon" type="image/png" href="profil.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    
+    
+    <style>
+        /* Color and font of the website */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffe6f9; 
+            color: #83436a;
+            margin: 0; 
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Font for my titles */
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Insertion of my profile picture */
+        .profilepicture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* Making the image round */
+            object-fit: cover; /* Makes sure the picture isn't pressed flat */
+            border: 4px solid white; /* Makes a white edge around my picture */ 
+            transition: transform 0.2s ease-out;
+        }
+
+        /* Styling of my header */
+        .my-header {
+            /* Locks the header to the top of the window*/
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-sizing: border-box;
+
+            background-color: #e4abd7; 
+            color: white;
+
+            /*takes up the whole screen in the beginning*/
+            height: 100vh;
+            box-sizing: border-box;
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center; 
+            gap: 30px; 
+            text-align: center;
+
+            transition: all 1s ease-in-out;
+        }
+
+        /* Removes standard space on the headlines so they are closer together */
+        .header-text h1 {
+            margin: 0;
+            color: white;
+            font-size: 32px;
+            transition: transform 0.2s ease-out;
+            will-change: transform;
+        }
+
+        .header-text h2 {
+            margin: 5px 0 0 0; /* gives only a little bit of air in the top */
+            font-size: 18px; /* Makes the second line a little smaller */
+            color: #ffffff; /* Softer color so the name stands out */
+            font-weight: normal;
+            transition: transform 0.2s ease-out;
+            will-change: transform;
+        }
+
+        /* The box for the rest of my content */
+        .content {
+            max-width: 1200px; 
+            margin: 120px auto 40px auto; 
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Styling so my links are prettier */
+        a {
+            color: #83436a;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /*Columns and layout*/
+        .cv-layout {
+            display: grid; /*CSS grid activated*/
+            grid-template-columns: 280px 1fr; /* 280px for my box, and the rest for the text*/
+            gap: 50px; /*Air between the two columns*/
+            margin-top: 30px;
+        }
+
+        .left-column {
+            position: sticky;
+            top: 120px; /* The air to the top of the screen */
+            align-self: start; /* Will make sure the column wound go all the way to the bottom */
+            background-color: #fceef8; 
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+
+        }
+
+        /*Styling of the titles with an underline*/
+        .content h3 {
+            color: #433261; /*Same color as the header*/
+            border-bottom: 2px solid #433261; /*The line under the text*/
+            padding-bottom: 5px;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            margin-top: 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        /*Styling for education and experience*/
+        .resume-point {
+            margin-bottom: 30px;
+        }
+
+        .resume-point h4 {
+            margin: 0 0 2px 0;
+            font-size: 18px;
+            color: #433261;
+        }
+
+        .resume-point .date {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            color: #83436a;
+            font-style: italic;
+        }
+
+        .resume-point p {
+            margin: 0;
+            line-height: 1.6; /* More readable text*/
+        }
+
+        /* Styling for icons */
+        .social-links {
+            list-style: none; /* Removes the bullet points */
+            padding: 0;
+            display: flex; /* Puts the icons next to each other */
+            gap: 15px; /* Space between icons*/
+        }
+
+        .social-icon {
+            width: 32px; /* The size of my icons */
+            height: auto;
+            transition: transform 0.2s /* A smooth animation*/
+        }
+
+        .social-icon:hover {
+            transform: scale(1.15); /* Makes the icon slightly bigger on hover */
+        }
+
+        /* Scroll Animation */ 
+        .fade-in { 
+            opacity: 0; /* Makes the element see through */
+            transform: translateY(30px); /* Push 30 pixels down */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* The slownes of the movement*/
+        }
+
+        .fade-in.visible {
+            opacity: 1; /* Makes the element visible again */
+            transform: translateY(0); /* Puts it back at its original spot*/
+        }
+
+        /*Animation for the header */
+        @keyframes floatIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+
+        .profilepicture {
+            animation: floatIn 1s ease-out forwards
+        }
+
+        .header-text {
+            animation: floatIn 1s ease-out 0.3s forwards; /* The text comes a bit after the picture */
+            opacity: 0;
+        }
+
+
+        .my-header.shrink {
+            height: 90px; /* the new height*/
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /*Makes the picture smaller*/
+        .my-header.shrink .profilepicture {
+            width: 60px;
+            height: 60px;
+            border-width: 2px;
+        }
+
+        /*Makes the name smaller*/
+        .my-header.shrink .header-text h1 {
+            font-size: 22px;
+        }
+        
+        /*Hiding the line that im studying computer science*/
+        .my-header.shrink .header-text h2 {
+            display: none;
+        }
+
+
+        .my-header.shrink .profilepicture, .my-header.shrink .header-text {
+            transform: translate(0px, 0px) !important;
+        }
+
+        /*Button settings*/
+        .cool-btn {
+            background-color: #e4abd7;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .cool-btn:hover {
+            background-color: #433261;
+            transform: translateX(5px); /* Moves the button to the right*/
+        }
+
+        /*matrix mode theme*/
+        body.matrix-mode {
+            background-color: #0d1117; /* black background */
+            color: #58a6ff; /*  blue code color */
+            font-family: 'Courier New', Courier, monospace; /* code font */
+        }
+
+        body.matrix-mode .my-header {
+            background-color: #161b22;
+            border-bottom: 2px solid #3fb950;
+        }
+
+        body.matrix-mode .left-column {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            box-shadow: 0 0 15px rgba(63, 185, 80, 0.2); 
+        }
+
+        body.matrix-mode h1, body.matrix-mode h2, body.matrix-mode h3, body.matrix-mode h4, body.matrix-mode a, body.matrix-mode .resume-point .date {
+            color: #3fb950; 
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body.matrix-mode .content h3 {
+            border-bottom: 2px dashed #3fb950;
+        }
+
+        body.matrix-mode .cool-btn {
+            background-color: #3fb950;
+            color: #0d1117;
+        }
+
+        body.matrix-mode .cool-btn:hover {
+            background-color: #58a6ff;
+        }
+
+        body.matrix-mode .profilepicture {
+            filter: grayscale(100%) contrast(1.2);
+            border-color: #3fb950;
+        }
+        
+
+    </style>
+</head>
+
+<body>
+    <header class="my-header">
+        <img src="profil.jpg" alt="Picture of me" class="profilepicture">
+
+        <div class="header-text">
+            <h1>Hi! My name is Ida Rafn van Gilst</h1>
+            <h2>Studying computer science on my third semester</h2>
+        </div>
+    </header>
+
+    <main class="content">
+        <div class="cv-layout">
+            
+            <aside class="left-column">
+                <h3>Contact & Links</h3>
+                <ul class="social-links">
+                    <li>
+                        <a href="https://www.linkedin.com/in/ida-r-727b9b3a5/" target="_blank">
+                            <img src="linkedin.png" alt="LinkedIn Profile" class="social-icon">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/idavangilst" target="_blank">
+                            <img src="github.png" alt="GitLab Profile" class="social-icon">
+                        </a>
+                    </li>
+                </ul>
+                <h3 style="margin-top: 30px;">Tech Skills</h3>
+                <ul>
+                    <li>Java & Scala</li>
+                    <li>HTML & CSS</li>
+                    <li>Git / GitLab</li>
+                    <li>Algorithms and Data Structures</li>
+                </ul>    
+
+                <h3 style="margin-top: 30px;">Soft Skills</h3>
+                <ul>
+                    <li>Problem solving</li>
+                    <li>Teamwork</li>
+                    <li>Curious mind</li>
+                </ul>
+
+                <h3 style="margin-top: 30px;">Settings</h3>
+                <ul class="social-links" style="display: flex, gap 10px; flex-direction: column;">
+                    <li>
+                        <button id="matrixModeBtn" class="cool-btn">Matrix Mode 👾</button>
+                    </li>
+                    <li>
+                        <button id="coffeBreakBtn" class="cool-btn">Coffe Break ☕</button>
+                    </li>
+                </ul>
+            </aside>
+
+            <section class="right-column">
+                <h3>Education</h3>
+
+                <div class="resume-point fade-in">
+                    <h4>BSc in Computer Science</h4>
+                    <p class="date">Aarhus University | 2024 - Present</p>
+                    <p>Currently on my third semester. I am focusing on building a strong foundation in programming and problem solving.
+
+                    </p>
+                    <p><strong>Relevant courses:</strong></p>
+                    <ul>
+                        <li>Introduction to Programming</li>
+                        <li>Algorithms and Data Structures</li>
+                        <li>Computer Architecture</li>
+                        <li>Programming Languages</li>
+                        <li>Computability and Logic</li>
+                    </ul>
+                </div>
+
+                <h3>Academic Projects</h3>
+
+                <div class="resume-point fade-in">
+                    <h4>Computer game in Java</h4>
+                    <p class="date">Course Project | Fall 2025</p>
+                    <p>Developed a simple computer game using Java.
+                        Improved my skills by applying inheritance, dynamic method lookup and the decorator design pattern to extend existing code safely.
+                        Ensured long-term code stability and reliability by writing automated regression tests in JUnit to validate all new features and boundary conditions. 
+                        Designed an interactive GUI with layout managers, menus and event listeners to manage live game state and user configurations.
+                        Implemented data storage and file I/O enabling the system to save, load, and replay game logs while handling          
+                    </p>
+
+                    <h4>Miniscala project in Scala</h4>
+                    <p class="date">Course Project | Spring 2026</p>
+                    <p>Engineered a complete programming language from scratch over the semester, building a full interpreter, static type checker, and stack-based virtual machine in scala. 
+                        Overcame the challenges of maintaining and scaling a large codebase whilst establishing a clean code structure to safely integrate new features. 
+                        Improved my ability to read, refactor and extend existing system architecture without breaking someting. 
+                        Learned to combine functional and object-oriented programming while ensuring code reliability by testing.
+                    </p>
+
+                    <h4>Personal Portfolio Website</h4>
+                    <p class="date">Curiosity-driven Project | Summer 2026</p>
+                    <p>Driven by a strong curiosity to understand web development from the ground up, I built this digital resume entirely from scratch. 
+                        Rather than using pre-made templates, I used this project as a hands-on opportunity to teach myself the fundamentals of HTML, CSS, and layout techniques like CSS Grid outside of my regular curriculum.
+                    </p>
+                </div>
+            </section>
+            
+        </div>
+        
+    </main>
+
+    <script>
+        /*JAVASCRIPT*/
+
+        /*Finds the header in the HTML*/
+        const mainHeader = document.querySelector('.my-header');
+
+        /*Finds profilepic and text for header*/
+        const profilePic = document.querySelector('.profilepicture');
+        const headerText = document.querySelector('.header-text');
+        let hasShrunk = false; /* Is the header small or not */
+
+        /*Lock scorll when page is loading */
+        document.body.style.overflow = 'hidden';
+
+        /* Saftey check */
+        if (window.scrollY > 20) {
+            mainHeader.classList.add('shrink');
+            document.body.style.overflow = '';
+            hasShrunk = true;
+        }
+
+        /*When user is tryring to scroll*/
+        window.addEventListener('wheel', handleScrollEvent);
+        window.addEventListener('touchmove', handleScrollEvent);
+
+        function handleScrollEvent(event) {
+            if (hasShrunk) return;
+
+            if (event.deltaY > 0 || event.type == 'touchmove') {
+                hasShrunk = true;
+                mainHeader.classList.add('shrink');
+
+                setTimeout(() => {
+                    document.body.style.overflow = '';
+                }, 1300);
+            }
+        }
+
+        mainHeader.addEventListener('mousemove', (e) => {
+            if (hasShrunk) return;
+
+            /* Middle of the screen */
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+
+            /* Calculates mouse position from midle*/
+            const mouseX = (e.clientX - centerX) / centerX;
+            const mouseY = (e.clientY - centerY) / centerY;
+
+            /*Moves picture and text opposite of mouse*/
+            const moveX = -mouseX * 15;
+            const moveY = -mouseY * 15;
+            profilePic.style.transform = `translate(${moveX}px, ${moveY}px)`;
+
+            const textMoveX = -mouseX * 8;
+            const textMoveY = -mouseY * 8;
+            headerText.style.transform = `translate(${textMoveX}px, ${textMoveY}px)`;
+        });
+
+        /* Resets position if mouse leaves header */
+        mainHeader.addEventListener('mouseleave', () => {
+            if (hasShrunk) return;
+            profilePic.style.transform = 'translate(0px, 0px)';
+            headerText.style.transform = 'translate(0px, 0px)';
+        });
+
+        /* Finds all elements that have fade-in*/
+        const elements = document.querySelectorAll('.fade-in');
+
+        /*Creates an observer that watches the scroll */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        /* The observer is watching the elements form the first step here */
+        elements.forEach((el) => observer.observe(el));
+
+        /* To make header-animation work*/
+        setTimeout(() => {
+            profilePic.style.animation = 'none';
+            headerText.style.opacity = '1';
+            headerText.style.animation = 'none';
+        }, 1400);
+
+        /* matrix mode*/
+        const matrixModeBtn = document.getElementById('matrixModeBtn');
+        matrixModeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('matrix-mode');
+            if (document.body.classList.contains('matrix-mode')) {
+                matrixModeBtn.innerText = "Disable Matrix Mode 🌸  ";
+            } else {
+                matrixModeBtn.innerText = "Matrix Mode 👾";
+            }
+        });
+    </script>
+</body>
+</html>
