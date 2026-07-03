@@ -2,12 +2,11 @@
 <html lang="da">
 <head>
     <meta charset="UTF-8">
-    <title>Ida van Gilst | Computer Science student </title>
+    <title>Ida van Gilst | Computer Science student</title>
     <link rel="icon" type="image/png" href="profil.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
-    
     
     <style>
         /* Color and font of the website */
@@ -50,7 +49,6 @@
 
             /*takes up the whole screen in the beginning*/
             height: 100vh;
-            box-sizing: border-box;
             display: flex; 
             flex-direction: column;
             align-items: center; 
@@ -115,7 +113,6 @@
             padding: 25px;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
-
         }
 
         /*Styling of the titles with an underline*/
@@ -201,7 +198,6 @@
             }
         }
         
-
         .profilepicture {
             animation: floatIn 1s ease-out forwards
         }
@@ -210,7 +206,6 @@
             animation: floatIn 1s ease-out 0.3s forwards; /* The text comes a bit after the picture */
             opacity: 0;
         }
-
 
         .my-header.shrink {
             height: 90px; /* the new height*/
@@ -237,7 +232,6 @@
         .my-header.shrink .header-text h2 {
             display: none;
         }
-
 
         .my-header.shrink .profilepicture, .my-header.shrink .header-text {
             transform: translate(0px, 0px) !important;
@@ -267,7 +261,7 @@
         /*matrix mode theme*/
         body.matrix-mode {
             background-color: #0d1117; /* black background */
-            color: #58a6ff; /*  blue code color */
+            color: #58a6ff; /* blue code color */
             font-family: 'Courier New', Courier, monospace; /* code font */
         }
 
@@ -331,7 +325,75 @@
             background:#ffe6f9;
         }
         
+        /* TERMINAL (Tilføjet her) */
+        .terminal-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+            z-index: 9999;
+        }
 
+        .terminal-modal.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .terminal-window {
+            width: 700px;
+            max-width: 90%;
+            height: 450px;
+            background: #1e1e1e;
+            border-radius: 14px;
+            overflow: hidden;
+            transform: translateY(20px);
+            transition: 0.3s;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .terminal-modal.show .terminal-window {
+            transform: translateY(0);
+        }
+
+        .terminal-topbar {
+            height: 40px;
+            background: #2b2b2b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 15px;
+        }
+
+        .red, .yellow, .green {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+
+        .terminal-title {
+            color: #ccc;
+            margin-left: 10px;
+            font-size: 13px;
+            font-family: monospace;
+        }
+
+        #terminalText {
+            padding: 20px;
+            margin: 0;
+            color: #00ff88;
+            font-family: monospace;
+            font-size: 14px;
+            white-space: pre-wrap;
+        }
     </style>
 </head>
 
@@ -368,7 +430,7 @@
                     <li>HTML & CSS</li>
                     <li>Git / GitLab</li>
                     <li>Algorithms and Data Structures</li>
-                </ul>    
+                </ul>   
 
                 <h3 style="margin-top: 30px;">Soft Skills</h3>
                 <ul>
@@ -385,6 +447,9 @@
                     <li>
                         <button id="toggleGameBtn" class="cool-btn">Show Tic Tac Toe ☕ </button>
                     </li>
+                    <li>
+                        <button id="whoamiBtn" class="cool-btn">> whoami</button>
+                    </li>
                 </ul>
             </aside>
 
@@ -394,9 +459,7 @@
                 <div class="resume-point fade-in">
                     <h4>BSc in Computer Science</h4>
                     <p class="date">Aarhus University | 2024 - Present</p>
-                    <p>Currently on my third semester. I am focusing on building a strong foundation in programming and problem solving.
-
-                    </p>
+                    <p>Currently on my third semester. I am focusing on building a strong foundation in programming and problem solving.</p>
                     <p><strong>Relevant courses:</strong></p>
                     <ul>
                         <li>Introduction to Programming</li>
@@ -416,9 +479,11 @@
                         Improved my skills by applying inheritance, dynamic method lookup and the decorator design pattern to extend existing code safely.
                         Ensured long-term code stability and reliability by writing automated regression tests in JUnit to validate all new features and boundary conditions. 
                         Designed an interactive GUI with layout managers, menus and event listeners to manage live game state and user configurations.
-                        Implemented data storage and file I/O enabling the system to save, load, and replay game logs while handling          
+                        Implemented data storage and file I/O enabling the system to save, load, and replay game logs while handling         
                     </p>
+                </div>
 
+                <div class="resume-point fade-in">
                     <h4>Miniscala project in Scala</h4>
                     <p class="date">Course Project | Spring 2026</p>
                     <p>Engineered a complete programming language from scratch over the semester, building a full interpreter, static type checker, and stack-based virtual machine in scala. 
@@ -426,7 +491,9 @@
                         Improved my ability to read, refactor and extend existing system architecture without breaking someting. 
                         Learned to combine functional and object-oriented programming while ensuring code reliability by testing.
                     </p>
+                </div>
 
+                <div class="resume-point fade-in">
                     <h4>Personal Portfolio Website</h4>
                     <p class="date">Curiosity-driven Project | Summer 2026</p>
                     <p>Driven by a strong curiosity to understand web development from the ground up, I built this digital resume entirely from scratch. 
@@ -434,31 +501,44 @@
                     </p>
                 </div>
             </section>
-            
         </div>
-        <div id="gameContainer" style="display:none;">
-                    <h2>Tic Tac Toe</h2>
-                    <p id="gameStatus">Player X's turn</p>
 
-                    <div id="board" class="tic-tac-toe-board">
-                        <div class="cell" data-index="0"></div>
-                        <div class="cell" data-index="1"></div>
-                        <div class="cell" data-index="2"></div>
-                        <div class="cell" data-index="3"></div>
-                        <div class="cell" data-index="4"></div>
-                        <div class="cell" data-index="5"></div>
-                        <div class="cell" data-index="6"></div>
-                        <div class="cell" data-index="7"></div>
-                        <div class="cell" data-index="8"></div>
-                    </div>
+        <div id="gameContainer" style="display:none; margin-top: 40px;">
+            <h2>Tic Tac Toe</h2>
+            <p id="gameStatus">Player X's turn</p>
 
-                    <button id="restartBtn" class="cool-btn">
-                        Play again
-                    </button>
-                </div>
+            <div id="board" class="tic-tac-toe-board">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
             </div>
+
+            <button id="restartBtn" class="cool-btn" style="max-width: 200px;">
+                Play again
+            </button>
         </div>
     </main>
+
+    <div id="terminalModal" class="terminal-modal">
+        <div class="terminal-window">
+            <div class="terminal-topbar">
+                <span class="red"></span>
+                <span class="yellow"></span>
+                <span class="green"></span>
+
+                <div class="terminal-title">
+                    ida@portfolio:~
+                </div>
+            </div>
+            <pre id="terminalText"></pre>
+        </div>
+    </div>
 
     <script>
         /*JAVASCRIPT*/
@@ -572,11 +652,9 @@
             [0,1,2],
             [3,4,5],
             [6,7,8],
-
             [0,3,6],
             [1,4,7],
             [2,5,8],
-
             [0,4,8],
             [6,4,2]
         ];
@@ -649,10 +727,53 @@
                 toggleBtn.innerText = "Hide Tic Tac Toe ❌";
             } else {
                 gameContainer.style.display = "none";
-                toggleBtn.innerText = "Show Tic Tac Toe ❌";
+                toggleBtn.innerText = "Show Tic Tac Toe ☕";
                 restartGame(); 
             }
+        });
 
+        /* Code for terminal*/
+        const terminal = document.getElementById("terminalModal");
+        const terminalText = document.getElementById("terminalText");
+        const whoamiBtn = document.getElementById("whoamiBtn");
+
+        function typeLine(text, delay = 25) {
+            return new Promise(resolve => {
+                let i = 0;
+                const interval = setInterval(() => {
+                    terminalText.textContent += text[i];
+                    i++;
+                    if (i >= text.length) {
+                        clearInterval(interval);
+                        terminalText.textContent += "\n";
+                        resolve();
+                    }
+                }, delay);
+            });
+        }
+
+        async function runCommand(cmd) {
+            terminalText.textContent = "";
+
+            if (cmd === "whoami") {
+                await typeLine("Ida Rafn van Gilst");
+                await typeLine("Computer Science student @ Aarhus University");
+                await typeLine("Based in Aarhus, Denmark");
+                await typeLine("I build systems, games and experiments from scratch.");
+            }
+        }
+
+        whoamiBtn.addEventListener('click', async () => {
+            terminal.classList.add('show');
+            await runCommand("whoami");
+        });
+
+        terminal.addEventListener('click', (e) => {
+            /* Close only if pressed outside the black window */
+            if (e.target === terminal) {
+                terminal.classList.remove('show');
+                terminalText.textContent = "";
+            }
         });
 
     </script>
